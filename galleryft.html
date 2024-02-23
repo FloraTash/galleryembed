@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Photo Gallery</title>
+   <style>
+    body, html {
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        background-color: black; /* Or any color that blends with your site's design */
+    }
+    #gallery {
+        position: fixed;
+        top: 15px;
+        left: 15px;
+        right: 15px;
+        bottom: 15px;
+        overflow: hidden;
+    }
+    #gallery img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: none; /* Hide images initially */
+    }
+    #buttons {
+        position: fixed;
+        left: 50%;
+        bottom: 25px; /* Adjusted to account for the "pseudo-padding" effect */
+        transform: translateX(-50%);
+        text-align: center;
+    }
+    button {
+        padding: 10px 20px;
+        margin: 0 5px;
+        cursor: pointer;
+    }
+</style>
+
+</head>
+<body>
+
+<div id="gallery">
+    <img src="C:\Users\Filura Tosheva\Downloads\thumbnails\2.png" alt="First Image">
+    <img src="C:\Users\Filura Tosheva\Downloads\thumbnails\3.png">
+    <img src="C:\Users\Filura Tosheva\Downloads\thumbnails\4.png">
+</div>
+
+<div id="buttons">
+    <button id="back">Back</button>
+    <button id="next">Next</button>
+</div>
+
+<script>
+   let currentIndex = 0;
+const images = document.querySelectorAll('#gallery img');
+
+// Initially show the first image
+images[currentIndex].style.display = 'block';
+
+document.getElementById('back').addEventListener('click', function() {
+    images[currentIndex].style.display = 'none';
+    currentIndex = (currentIndex - 1 + images.length) % images.length;
+    images[currentIndex].style.display = 'block';
+});
+
+document.getElementById('next').addEventListener('click', function() {
+    images[currentIndex].style.display = 'none';
+    currentIndex = (currentIndex + 1) % images.length;
+    images[currentIndex].style.display = 'block';
+});
+
+</script>
+
+</body>
+</html>
